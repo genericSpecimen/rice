@@ -1,0 +1,20 @@
+#!/bin/bash
+export DISPLAY=:0
+POWERSUPPLY="/sys/bus/acpi/drivers/battery/*/power_supply/BAT0/status"
+LOW=20
+CRITICAL=10
+ICON="/usr/share/icons/Gnome-battery-caution.svg.png"
+
+BATTERY_LEVEL=$(acpi -b | grep -P -o '[0-9]+(?=%)')
+STATUS=$(cat $POWERSUPPLY)
+
+if [ $BATTERY_LEVEL -le $CRITICAL -a $STATUS = "Discharging" ]
+then
+	/usr/bin/notify-send -u critical -i "$ICON" -t 3000 "Battery critically low" "Battery level is ${BATTERY_LEVEL}%!."
+
+elif [ $BATTERY_LEVEL -le $LOW -a $STATUS = "Discharging" ]
+then
+	/usr/bin/notify-send -u normal -i "$ICON" -t 3000 "Battery low" "Battery level is ${BATTERY_LEVEL}%! Please plug in charger now."
+	
+fi
+exit 0
