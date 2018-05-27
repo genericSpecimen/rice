@@ -1,0 +1,40 @@
+#!/bin/bash
+
+scrot /tmp/screen.png
+convert /tmp/screen.png -scale 10% -scale 1000% /tmp/screen.png
+
+if [[ -f /home/hooman/Downloads/security-lock-network-512.png ]]
+then
+	X=0
+	Y=0
+	
+	#lock image info
+	L_IMG=$(file /home/hooman/Downloads/security-lock-network-512.png | grep -o '[0-9]* x [0-9]*')
+	L_X=$(echo $L_IMG | cut -d' ' -f1)
+	L_Y=$(echo $L_IMG | cut -d' ' -f3)
+
+	
+	DX=1366
+	DY=768
+
+	DOX=0 #x offset
+	DOY=0 #y offset
+
+	X=$(($DOX + $DX/2 - $L_X/2))
+	Y=$(($DOY + $DY/2 - $L_Y/2))
+		
+	convert /tmp/screen.png /home/hooman/Downloads/security-lock-network-512.png -geometry +$X+$Y -composite -matte /tmp/screen.png
+
+	DX=1360
+	DY=768
+
+	DOX=1366 #x offset
+	DOY=0 #y offset
+
+	X=$(($DOX + $DX/2 - $L_X/2))
+	Y=$(($DOY + $DY/2 - $L_Y/2))
+
+	convert /tmp/screen.png /home/hooman/Downloads/security-lock-network-512.png -geometry +$X+$Y -composite -matte /tmp/screen.png
+
+fi
+i3lock -i /tmp/screen.png
