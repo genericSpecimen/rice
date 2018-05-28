@@ -8,6 +8,7 @@ then
 	X=0
 	Y=0
 	
+	convert /home/hooman/Downloads/security-lock-network-512.png -scale 50% /home/hooman/Downloads/security-lock-network-512.png 	
 	#lock image info
 	L_IMG=$(file /home/hooman/Downloads/security-lock-network-512.png | grep -o '[0-9]* x [0-9]*')
 	L_X=$(echo $L_IMG | cut -d' ' -f1)

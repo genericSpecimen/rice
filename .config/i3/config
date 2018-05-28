@@ -196,5 +196,5 @@ bindsym $mod+shift+x exec /home/hooman/.scripts/lock_screen
 bindsym $mod+BackSpace exec --no-startup-id /home/hooman/.scripts/flash_screen 
 
 exec_always --no-startup-id compton
-exec_always --no-startup-id feh --bg-scale /home/hooman/Downloads/IMG_302842.jpg
-
+exec_always --no-startup-id feh --bg-scale /home/hooman/Downloads/652640.jpg
+exec_always xrdb /home/hooman/.Xresources
