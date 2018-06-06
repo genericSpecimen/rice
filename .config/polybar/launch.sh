@@ -10,6 +10,8 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 monitor1=$(polybar -m| tail -n 1 | sed -e 's/:.*$//g')
 monitor2=$(polybar -m| head -n 1 | sed -e 's/:.*$//g')
 MONITOR=$monitor1 polybar mybar &
-MONITOR=$monitor2 polybar mybar &
-
+if [ $monitor1 != $monitor2 ];
+then
+	MONITOR=$monitor2 polybar mybar &
+fi
 echo "Bars launched..."
