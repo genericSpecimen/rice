@@ -1,0 +1,1 @@
+exec xrandr --output LVDS1 --auto --output HDMI1 --mode 1360x768 --right-of LVDS1
