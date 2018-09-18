@@ -192,7 +192,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 bindsym $mod+d exec /home/hooman/.scripts/rofi_conf
 bindsym $mod+shift+b exec qutebrowser
-bindsym $mod+shift+f exec firefox
+bindsym $mod+shift+f exec env GTK_THEME=Adwaita:light firefox
 bindsym $mod+shift+x exec /home/hooman/.scripts/lock_screen
 bindsym $mod+BackSpace exec --no-startup-id /home/hooman/.scripts/flash_screen 
 bindsym --release Print exec scrot
