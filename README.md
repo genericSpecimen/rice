@@ -4,6 +4,8 @@ My dotfiles for the minimal system I've tried to configure.
 * OS: [Arch Linux](https://www.archlinux.org/)
 * WM: [i3-gaps](https://github.com/Airblader/i3)
 * bar: [polybar](https://github.com/jaagr/polybar)
+* bash statusline: [powerline](https://github.com/powerline/powerline)
+* vim statusline: [vim-airline](https://github.com/vim-airline/vim-airline)
 
 # Screenshots
 
