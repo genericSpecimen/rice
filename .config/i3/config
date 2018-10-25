@@ -191,7 +191,6 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 bindsym $mod+d exec /home/hooman/.scripts/rofi_conf
-bindsym $mod+shift+b exec qutebrowser
 bindsym $mod+shift+f exec env GTK_THEME=Adwaita:light firefox
 bindsym $mod+shift+x exec /home/hooman/.scripts/lock_screen
 bindsym $mod+BackSpace exec --no-startup-id /home/hooman/.scripts/flash_screen 
@@ -199,6 +198,6 @@ bindsym --release Print exec scrot
 bindsym --release Shift+Print exec scrot -s
 bindsym --release $mod+Shift+Print exec scrot -u -d 4
 exec_always --no-startup-id compton
-exec_always --no-startup-id feh --bg-scale /home/hooman/Downloads/652640.jpg
+exec_always --no-startup-id feh --bg-scale /home/hooman/Pictures/Highway.png
 exec_always --no-startup-id /home/hooman/.config/polybar/launch.sh
-exec_always xrdb /home/hooman/.Xresources
+exec --no-startup-id nm-applet

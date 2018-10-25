@@ -26,6 +26,7 @@ height = 27
 ;offset-y = 1%
 radius = 6.0
 fixed-center = false
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -48,7 +49,7 @@ font-2 = "Wuncon Siji:pixelsize=10;1"
 
 modules-left = i3 date
 modules-center =
-modules-right = filesystem xbacklight memory cpu wlan eth battery temperature powermenu
+modules-right = filesystem xbacklight memory cpu wlan eth battery temperature 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
@@ -234,7 +235,8 @@ interval = 3.0
 format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+;label-connected = %local_ip%
+label-connected = %{F#66}%local_ip% %{F#ff}%{T1}%downspeed% %upspeed%%{T-}
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>

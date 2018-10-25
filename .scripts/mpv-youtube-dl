@@ -1,0 +1,3 @@
+URL=$1
+QUALITY_HEIGHT=$2
+mpv --ytdl-format="bestvideo[height<=?$QUALITY_HEIGHT]+bestaudio/best" $URL
