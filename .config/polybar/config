@@ -49,7 +49,7 @@ font-2 = "Wuncon Siji:pixelsize=10;1"
 
 modules-left = i3 date
 modules-center =
-modules-right = filesystem xbacklight memory cpu wlan eth battery temperature 
+modules-right = filesystem xbacklight memory cpu wlan eth battery battery_notif temperature 
 tray-position = right
 tray-padding = 2
 ;tray-transparent = true
@@ -362,6 +362,11 @@ menu-2-0 = power off
 menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
+
+[module/battery_notif]
+type = custom/script
+exec = ~/.scripts/battery_notif
+interval = 10
 
 [settings]
 screenchange-reload = true
