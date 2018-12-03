@@ -1,0 +1,9 @@
+#!/bin/sh
+notify-send -u low -t 5000 "MEM: $(free -h | awk '/^Mem/ {print $3 "/" $2}')"
+notify-send -u low -t 5000 "TEMP: $(sensors | awk '/^temp1/ {print $2}')"
+notify-send -u low -t 10000 "***MEMORY HOGGERS***
+$(ps axch -o cmd:15,%mem --sort=-%mem | head -n10)" 
+
+
+notify-send -u low -t 10000 "***CPU HOGGERS*** 
+$(ps axch -o cmd:15,%cpu --sort=-%cpu | head -n10)" 
