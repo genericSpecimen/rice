@@ -1,0 +1,13 @@
+#!/bin/bash
+ICON="/usr/share/icons/Papirus-Dark/16x16/devices/camera-photo.svg"
+COPY_TO_CLIPBOARD='xclip -selection clipboard -t image/png -i $f'
+SAVED_MSG="Saved screenshot to Pictures/Screenshots and copied it to clipboard.."
+if [ "$#" -eq 1 ]
+then
+	case "$1" in
+		-f|--full) scrot ~/Pictures/Screenshots/'%Y-%m-%d_$wx$h.png' -e "$COPY_TO_CLIPBOARD"; notify-send -u low -i $ICON "$SAVED_MSG";;
+		-s|--select) notify-send -u low "Select the portion of screen to capture!"; scrot -s ~/Pictures/Screenshots/'%Y-%m-%d_$wx$h.png' -e "$COPY_TO_CLIPBOARD"; notify-send -u low -i $ICON "$SAVED_MSG";;
+		-u|--focused) scrot -u -d 4 ~/Pictures/Screenshots/'%Y-%m-%d_$wx$h.png' -e "$COPY_TO_CLIPBOARD"; notify-send -u low -i $ICON "$SAVED_MSG";;
+		-*) echo "unknown option: $1"; exit 1;
+	esac
+fi

@@ -185,24 +185,24 @@ hide_edge_borders both
 #}
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id /home/hooman/.scripts/vol_up #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/hooman/.scripts/vol_down #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id /home/hooman/.scripts/vol_mute # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.scripts/vol_up #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.scripts/vol_down #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id ~/.scripts/vol_mute # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-bindsym $mod+d exec /home/hooman/.scripts/rofi_conf
+bindsym $mod+d exec ~/.scripts/rofi_conf
 bindsym $mod+shift+f exec env GTK_THEME=Adwaita:light firefox
-bindsym $mod+shift+x exec /home/hooman/.scripts/lock_screen
-bindsym $mod+BackSpace exec --no-startup-id /home/hooman/.scripts/flash_screen 
-bindsym $mod+Shift+s exec /home/hooman/.scripts/status
-bindsym --release Print exec scrot
-bindsym --release Shift+Print exec scrot -s
-bindsym --release $mod+Shift+Print exec scrot -u -d 4
+bindsym $mod+shift+x exec ~/.scripts/lock_screen
+bindsym $mod+BackSpace exec --no-startup-id ~/.scripts/flash_screen 
+bindsym $mod+Shift+s exec ~/.scripts/status
+bindsym --release Print exec ~/.scripts/screenshot -f 
+bindsym --release Shift+Print exec ~/.scripts/screenshot -s
+bindsym --release $mod+Shift+Print exec ~/.scripts/screenshot -u
 
 exec_always --no-startup-id compton
-exec_always --no-startup-id feh --bg-scale /home/hooman/Pictures/Highway.png
-exec_always --no-startup-id /home/hooman/.config/polybar/launch.sh
+exec_always --no-startup-id feh --bg-scale ~/Pictures/Highway.png
+exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
