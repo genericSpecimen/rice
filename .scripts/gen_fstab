@@ -26,8 +26,7 @@ do
 		echo "#${PARTITIONS["$PART"]}" >> test
 		UUID=$(blkid -s PARTUUID -o value ${PARTITIONS["$PART"]})
 		TYPE=${TYPES["$PART"]}
-		echo "UUID=$UUID	/	$TYPE	rw,noatime,user	0 1" >> test
+		echo "UUID=$UUID	/	$TYPE	rw,noatime	0 1" >> test
 		echo >> test
 	fi
-	echo
 done
