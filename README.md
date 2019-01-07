@@ -6,6 +6,7 @@ My dotfiles for the minimal system I've tried to configure.
 * bar: [polybar](https://github.com/jaagr/polybar)
 * bash statusline: [powerline](https://github.com/powerline/powerline)
 * vim statusline: [vim-airline](https://github.com/vim-airline/vim-airline)
+* file manager: [ranger](http://ranger.github.io/)
 
 # Screenshots
 
