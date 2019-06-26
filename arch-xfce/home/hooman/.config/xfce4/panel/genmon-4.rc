@@ -1,0 +1,6 @@
+Command=sh /home/hooman/ip.sh
+UseLabel=0
+Text=(genmon)
+UpdatePeriod=120000
+Font=Sans 10
+
