@@ -16,4 +16,7 @@ syntax on
 " autocmd vimenter * NERDTree
 :map <C-n> :NERDTree
 let g:airline_powerline_fonts = 1
+set t_Co=256
+colorscheme elflord
+set path=$PWD/**
 
