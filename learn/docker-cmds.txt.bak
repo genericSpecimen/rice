@@ -1,0 +1,80 @@
+when using docker-compose up, make sure to manually create binded volumes using the user (1000) to avoid permission errors. Otherwise, the directories created will be owned by root.
+
+instead of using `localhost` or ip addresses like `192.168.1.7` in application specific setup, use the ip address of the docker container, or the container's name.
+eg: http://jackett:9117/...., where jackett is a container name.
+
+## Docker commands reference
+      
+### basic info
+sudo docker info
+
+## running a container using a base image
+sudo docker run hello-world
+
+## list all (-a) containers
+sudo docker ps -a
+
+## pull an image and run a container derived from the image
+sudo docker pull linuxserver/qbittorrent
+sudo docker run linuxserver/qbittorrent
+
+
+## publish / expose port 8080 (after :) of the container, and bind to the host's port 8080 (before :)
+sudo docker run -p 8080:8080 qbittorrent
+## detached mode
+sudo docker run -d -p 8080:8080 linuxserver/qbittorrent
+
+## docker exec runs a new command in a running container; here we run an interactive bash tty
+sudo docker exec -it linuxserver/qbittorrent /bin/bash
+
+## Display a live stream of container(s) resource usage statistics
+sudo docker container stats
+
+sudo docker exec -it ea250ee4b2d0 /bin/bash
+
+## fetch logs of a container
+sudo docker logs -f ea250ee4b2d0
+
+## Define and run multi-container applications (defined in docker-compose.yml)
+## Create and start containers
+sudo docker-compose up
+## detached mode
+sudo docker-compose up -d
+
+## remove all stopped containers
+sudo docker container prune
+
+## stop specified containers
+sudo docker container stop ea250ee4b2d0
+sudo docker container stop qbittorrent
+
+
+## list networks
+sudo docker network ls
+
+## Display detailed information on one or more networks
+sudo docker network inspect bridge
+sudo docker network inspect xubuntuvm_default
+
+## list images
+sudo docker images
+
+## if you don't have any text editors installed in the container and want to modify
+## a file, one alternative is to copy the file from the container, edit it on the host,
+## and then move it back to the container
+sudo docker cp 2f8f8292279c:/config/data/qBittorrent/nova3/engines/jackett.json .
+sudo docker cp jackett.json 2f8f8292279c:/config/data/qBittorrent/nova3/engines/jackett.json
+
+## Lot of low-level information on Docker objects
+sudo docker inspect sonarr
+## IP address of container
+sudo docker inspect sonarr | grep IPAddress
+
+sudo docker containers ls
+
+## stop specific containers
+sudo docker container stop bf424149bd34 2f8f8292279c b627034da7ff
+## display only numeric IDs, useful for stopping all of the containers at once
+sudo docker ps -aq
+sudo docker container stop $(sudo docker ps -aq)
+

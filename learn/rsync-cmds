@@ -1,0 +1,11 @@
+ssh -p 39093 hooman@192.168.1.9
+ssh -p 39093 username@hostname.local (set up avahi first)
+
+copy file from 192.168.1.9 to Documents 
+rsync -avhP -e "ssh -p 39093" hooman@192.168.1.9:/home/hooman/Desktop/buy.txt Documents
+
+
+if sshed into 192.168.1.9 first, then use this instead
+rsync -e "ssh -p 39093" buy.txt hooman@192.168.1.12:/home/hooman/Desktop
+	specify ssh port, src  host:destination
+

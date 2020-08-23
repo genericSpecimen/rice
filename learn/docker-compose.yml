@@ -1,0 +1,108 @@
+---
+version: "2.1"
+services:
+        jackett:
+                image: linuxserver/jackett
+                container_name: jackett
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./jackett/config:/config
+                        - ./Downloads:/downloads
+                ports:
+                        - 9117:9117
+                restart: unless-stopped
+
+        qbittorrent:
+                image: linuxserver/qbittorrent
+                container_name: qbittorrent
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                        - WEBUI_PORT=8080
+                volumes:
+                        - ./qbittorrent/config:/config
+                        - ./Downloads:/downloads
+                ports:
+                        - 8080:8080
+                restart: unless-stopped
+
+        sonarr:
+                image: linuxserver/sonarr
+                container_name: sonarr
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./sonarr/config:/config
+                        - ./TV-Shows:/tv
+                        - ./Downloads:/downloads
+                ports:
+                        - 8989:8989
+                restart: unless-stopped        
+
+        radarr:
+                image: linuxserver/radarr
+                container_name: radarr
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./radarr/config:/config
+                        - ./Movies:/movies
+                        - ./Downloads:/downloads
+                ports:
+                        - 7878:7878
+                restart: unless-stopped
+
+        lidarr:
+                image: linuxserver/lidarr
+                container_name: lidarr
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./lidarr/config:/config
+                        - ./Music:/music
+                        - ./Downloads:/downloads
+                ports:
+                        - 8686:8686
+                restart: unless-stopped
+
+        jellyfin:
+                image: linuxserver/jellyfin
+                container_name: jellyfin
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./jellyfin/config:/config
+                        - ./jellyfin/cache:/cache
+                        - ./Downloads:/media/media1
+                        - ./Music:/media/media2
+                        - ./TV-Shows:/media/media3
+                        - ./Movies:/media/media4
+                ports:
+                        - 8096:8096
+                restart: unless-stopped
+
+        homer:
+                image: nx211/docker-homer
+                container_name: homer
+                environment:
+                        - PUID=1000
+                        - PGID=1000
+                        - TZ=Asia/Kolkata
+                volumes:
+                        - ./homer/config/config.yml:/homer/config.yml
+                ports:
+                        - 80:80
+                restart: unless-stopped
+

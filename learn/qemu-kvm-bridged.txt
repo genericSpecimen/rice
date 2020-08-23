@@ -1,0 +1,39 @@
+QEMU: generic and open source machine emulator and virtualizer
+QEMU can use other hypervisors like Xen or KVM.
+
+QEMU does not provide a GUI to manage virtual machines (other than the window that appears when running a virtual machine), nor does it provide a way to create persistent virtual machines with saved settings. All parameters to run a virtual machine must be specified on the command line at every launch, unless you have created a custom script to start your virtual machine(s).
+
+Libvirt provides a convenient way to manage QEMU virtual machines.
+
+A libvirt client is the user interface that will be used to manage and access the virtual machines. One such client is
+Virtual Machine Manager — Graphically manage KVM, Xen, or LXC via libvirt.
+
+
+sudo pacman -S qemu libvirt ebtables dnsmasq bridge-utils virt-manager
+
+if in virt-manager you get errors with default network, try restarting first!
+
+Bridge networking (tested with NetworkManager):
+https://www.happyassassin.net/posts/2014/07/23/bridged-networking-for-libvirt-with-networkmanager-2014-fedora-21/
+
+Now VM should get an IP address like any other device in your LAN. eg: 192.168.1.7. Thus, you can access servers running on the VM through any host in the LAN.
+
+Setting up a bridge with NetworkManager
+
+If you have a clean Fedora 20+ (I think - I tested with 21 and 22, but from reports I've read I think this all applies to F20 as well) system, and you just want to make it work, here is what you should do.
+
+    Turn off or delete your existing wired network connection. In GNOME, run the Control Center 'Network' panel and slide the slider to Off. Edit its properties You can do it with nmcli or ifdown or KDE or whatever as well. If you only turn it off, best to also set it not to start at boot: in GNOME, open its properties (with the weird cog icon), click Identity, and uncheck Connect automatically.
+    Create a new bridge connection profile. In GNOME 'Network', click the +, then click Bridge. With nm-connection-editor, click Add, set the dropdown to Bridge, and click Create...
+    If you use DHCP, leave everything in the Editing Bridge connection X window you see at default, except click Add next to the empty pane labelled "Bridged connections:", leave the dropdown box at Ethernet, and click Create.... If you need to customize your configuration at all - for static IP addressing, or whatever - do it here, in the bridge's properties, in the IPv4 Settings and IPv6 Settings tabs, before you click Add. If you forget to do it now, don't worry, you can always come back and edit the bridge's properties later.
+    In the Editing bridgeX slave Y window you see, select your ethernet adapter in the drop-down labelled "Device MAC address:". Go to the General tab and check Automatically connect to this network when it is available.
+    Click Save... (in Editing bridgeX slave Y)
+    Click Save... (in Editing Bridge connection X)
+    Open a terminal, and run as root: nmcli con show. You should see a connection whose name matches the 'bridgeX slave Y' profile you just created. Copy the UUID of that connection.
+    Run as root nmcli con up (UUID), using the UUID you just copied. If you look at GNOME's "Network" applet again, you'll see a new connection suddenly appeared under "Wired". The fact that it didn't show up before and we had to use nmcli to turn it on is a bug. At this point, your network should come back up again, maybe after a 30 second or so delay. If you look in ifconfig or ip addr you'll see the IP address is tied to the bridge interface. If you look at brctl show you should see the bridge you created, with your network interface listed in the right-hand column.
+    Configure your virtual machines to use the bridge as their Network source (in virt-manager, it's one of the properties of the VM's NIC, in the VM details page)
+    Profit!
+    If everything works, and it still works after a reboot, you might want to delete the original profile for your ethernet interface, to stop it confusing things.
+
+if virt-manager text is unreadable in dark theme, manually specify a light GTK theme to use.
+GTK_THEME=Adwaita:light virt-manager
+
