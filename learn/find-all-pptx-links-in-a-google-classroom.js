@@ -14,8 +14,9 @@ for(let i=0; i<links.length; i++) {
 }
 
 /*
- * save links_str to a file, say ppts.txt
- * cut -d '/' ppts.txt -f 6 > ppt_ids.txt
- * cat ppt_ids.txt | xargs -L1 ./gdrive download
+ * 1. save links_str to a file, say ppts.txt
+ * 2. get file IDs:         cut -d '/' ppts.txt -f 6 > ppt_ids.txt
+ * 3. fetch using gdrive:   cat ppt_ids.txt | xargs -L1 ./gdrive download
  * https://github.com/prasmussen/gdrive
+ * 4. convert to pdf:       soffice --headless --convert-to pdf *.pptx
  */
